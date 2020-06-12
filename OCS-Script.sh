@@ -64,7 +64,7 @@ echo 'echo -e " \##    ##| ##  | ##| ##  \###| ##    ##| ##  | ## "' >> .bashrc
 echo 'echo -e "  \######  \##   \## \##   \## \#######  \##   \## "' >> .bashrc
 echo 'echo -e "                                      Baper Group™" | lolcat' >> .bashrc
 echo 'echo -e "welcome to the server $HOSTNAME" | lolcat' >> .bashrc
-echo 'echo -e "Script mod by Janda Baper Group"' >> .bashrc
+echo 'echo -e "Script mod by Janda Baper Group" | lolcat' >> .bashrc
 echo 'echo -e ""' >> .bashrc
 apt-get install -y mysql-server
 
@@ -93,11 +93,12 @@ echo "$so1"
 chown -R mysql:mysql /var/lib/mysql/
 chmod -R 755 /var/lib/mysql/
 
-#web
+# add repo php5.6
 sudo apt-get update
 sudo apt-get install -y apt-transport-https curl
 curl https://packages.sury.org/php/apt.gpg | sudo apt-key add -
-echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/php5.list
+echo 'deb https://packages.sury.org/php/ $(lsb_release -sc) main' >> /etc/apt/sources.list.d/php5.list
+apt-get update
 
 apt-get -y install nginx php5.6 php5.6-fpm php5.6-cli php5.6-mysql php5.6-mcrypt
 rm /etc/nginx/sites-enabled/default
@@ -181,15 +182,19 @@ chmod 755 /home/vps/public_html/config
 chmod 644 /home/vps/public_html/config/inc.php
 chmod 644 /home/vps/public_html/config/route.php
 
+# lolcat
+apt-get -y install ruby
+gem install lolcat
+
 # info
 clear
 echo "=======================================================" | tee -a log-install.txt
-echo "Please login Reseller Panel at http://$MYIP:69" | tee -a log-install.txt
+echo "Login Penel di http://$MYIP:69" | tee -a log-install.txt
 echo "" | tee -a log-install.txt
-echo "Auto Script Installer OCS Panels Mod by Janda Baper Group"  | tee -a log-install.txt
-echo "                        "  | tee -a log-install.txt
+echo "Script Installer OCS Panel Mod by Janda Baper Group"  | tee -a log-install.txt
+echo ""  | tee -a log-install.txt
 echo "" | tee -a log-install.txt
-echo "Thanks " | tee -a log-install.txt
+echo "Matur Suwun Ndoro" | tee -a log-install.txt
 echo "" | tee -a log-install.txt
 echo "Installation Log --> /root/log-install.txt" | tee -a log-install.txt
 echo "=======================================================" | tee -a log-install.txt
