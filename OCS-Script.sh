@@ -20,9 +20,9 @@ fi
 vps="vps";
 
 if [[ $vps = "vps" ]]; then
-	source="https://raw.githubusercontent.com/acillsadank/OCSPANEL/master"
+	source="https://raw.githubusercontent.com/janda09/ocspanel/master"
 else
-	source="https://raw.githubusercontent.com/acillsadank/OCSPANEL/master/master"
+	source="https://raw.githubusercontent.com/janda09/ocspanel/master/master"
 fi
 
 # go to root
@@ -38,7 +38,7 @@ echo "I need to ask some questions before starting setup"
 echo "You can leave the default option and just hit enter if you agree with the option"
 echo ""
 echo "First I need to know the new password of MySQL root user:"
-read -p "Password: " -e -i kadallfamily DatabasePass
+read -p "Password: " -e -i JandaBaper DatabasePass
 echo ""
 echo "Finally, name the Database Name for OCS Panels"
 echo " Please, use one word only, no special characters other than Underscore (_)"
@@ -52,14 +52,19 @@ apt-get update -y
 apt-get install build-essential expect -y
 
 echo "clear" >> .bashrc
-echo 'echo -e "   ## # # ###  ## ### ###  #  "' >> .bashrc
-echo 'echo -e "  #   # #  #  #   #   # # # # "' >> .bashrc
-echo 'echo -e "   #  ###  #  # # ##  # # # # "' >> .bashrc
-echo 'echo -e "    # # #  #  # # #   # # # # "' >> .bashrc
-echo 'echo -e "  ##  # # ###  ## ### # #  #  "' >> .bashrc
+echo 'echo -e ""' >> .bashrc
+echo 'echo -e "    _____   ______   __    __  _______    ______  "' >> .bashrc
+echo 'echo -e "   |     \ /      \ |  \  |  \|       \  /      \ "' >> .bashrc
+echo 'echo -e "    \#####|  ######\| ##\ | ##| #######\|  ######\ "' >> .bashrc
+echo 'echo -e "      | ##| ##__| ##| ###\| ##| ##  | ##| ##__| ## "' >> .bashrc
+echo 'echo -e " __   | ##| ##    ##| ####\ ##| ##  | ##| ##    ## "' >> .bashrc
+echo 'echo -e "|  \  | ##| ########| ##\## ##| ##  | ##| ######## "' >> .bashrc
+echo 'echo -e "| ##__| ##| ##  | ##| ## \####| ##__/ ##| ##  | ## "' >> .bashrc
+echo 'echo -e " \##    ##| ##  | ##| ##  \###| ##    ##| ##  | ## "' >> .bashrc
+echo 'echo -e "  \######  \##   \## \##   \## \#######  \##   \## "' >> .bashrc
+echo 'echo -e "                                      Baper Group™" | lolcat' >> .bashrc
 echo 'echo -e "welcome to the server $HOSTNAME" | lolcat' >> .bashrc
-echo 'echo -e "Script mod by RIZWAN ARIF FIRMANSYAH"' >> .bashrc
-echo 'echo -e "Type menu to display a list of commands"' >> .bashrc
+echo 'echo -e "Script mod by Janda Baper Group"' >> .bashrc
 echo 'echo -e ""' >> .bashrc
 apt-get install -y mysql-server
 
@@ -88,7 +93,13 @@ echo "$so1"
 chown -R mysql:mysql /var/lib/mysql/
 chmod -R 755 /var/lib/mysql/
 
-apt-get -y install nginx php5 php5-fpm php5-cli php5-mysql php5-mcrypt
+#web
+sudo apt-get update
+sudo apt-get install -y apt-transport-https curl
+curl https://packages.sury.org/php/apt.gpg | sudo apt-key add -
+echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/php5.list
+
+apt-get -y install nginx php5.6 php5.6-fpm php5.6-cli php5.6-mysql php5.6-mcrypt
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
 mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.backup 
@@ -109,7 +120,7 @@ service nginx restart
 
 apt-get -y install zip unzip
 cd /home/vps/public_html
-wget $source/OCS.zip
+wget -O OCS.zip "https://raw.githubusercontent.com/janda09/ocspanel/master/OCS.zip"
 unzip OCS.zip
 rm -f OCS.zip
 chown -R www-data:www-data /home/vps/public_html
@@ -132,7 +143,7 @@ chmod 777 /home/vps/public_html/config/route.php
 apt-get -y --force-yes -f install libxml-parser-perl
 
 clear
-echo "Open Browser, access http://$MYIP:80/ and complete the data as below!"
+echo "Open Browser, access http://$MYIP:69/ and complete the data as below!"
 echo "Database:"
 echo "- Database Host: localhost"
 echo "- Database Name: $DatabaseName"
@@ -173,7 +184,7 @@ chmod 644 /home/vps/public_html/config/route.php
 # info
 clear
 echo "=======================================================" | tee -a log-install.txt
-echo "Please login Reseller Panel at http://$MYIP:85" | tee -a log-install.txt
+echo "Please login Reseller Panel at http://$MYIP:69" | tee -a log-install.txt
 echo "" | tee -a log-install.txt
 echo "Auto Script Installer OCS Panels Mod by airblue"  | tee -a log-install.txt
 echo "                        "  | tee -a log-install.txt
